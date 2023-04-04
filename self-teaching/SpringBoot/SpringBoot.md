@@ -29,5 +29,26 @@ Spring是为了解决企业级应用开发的复杂性而创建的，简化开�
 
 ## yaml语法
 
+- 冒号后面必须跟一个空格
+- 可以注入到java类中
+
+```yaml
+# key-value
+student1:
+	name: jack
+	age: 18
+	
+# in-line
+student2: {name: jack,age: 3}
+
+# array
+pets1:
+	- cat
+	- dog
+	- pig
+	
+pets2: [cat,dog,pig]
+```
+
 
 
