@@ -1,1 +1,1 @@
-# lmy-notes
+# my-notes
