@@ -1,8 +1,8 @@
 # Structure And Interpretation Of Computer Programs
 
-> This lecture notes is about SICP in Spring 2005 by Hal Abelson and Gerald Jay Sussman.
+> This lecture notes is about SICP in Spring 2005 by Gerald Jay Sussman.
 
-## Lec1A
+## Lec1A Overview and Introduction to Lisp
 
 > 2023/4/23
 
@@ -133,7 +133,57 @@
     .001))
   ```
 
-  
+
+
+
+## Lec1B Procedures and Processes; Substitution Model
+
+### Kinds of Expressions
+
+- Numbers
+- Symbols
+- λ-Expressions
+- Definitions
+- Conditionals
+- Combinations
+
+### To Evaluate an application
+
+- Evaluate the operator to get procedures
+- Evaluate the operands to get arguments
+- Apply the procedures to the arguments
+
+### To Evaluate a IF Expression
+
+- Evaluate the \<predicate\> expression
+- If it yields TRUE
+  - Evaluate the \<consequent\> expression
+- Otherwise
+  - Evaluate the \<alternative\> expression
+
+### Iteration VS Recursion
+
+- Iteration
+
+  ```scheme
+  (define (+ x y)
+    (if (= x 0)
+        y
+        (+ (-1+ x) (1+ y))))
+  ; time=O(x)
+  ; space=O(1)
+  ```
+
+- Recursion
+
+  ```scheme
+  (define (+ x y)
+    (if (= x 0)
+        y
+        (1+ (+ (-1+ x) y))))
+    ; time=O(x)
+    ; space=O(x)
+  ```
 
   
 
