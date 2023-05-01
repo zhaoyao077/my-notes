@@ -185,5 +185,42 @@
     ; space=O(x)
   ```
 
-  
+
+
+
+## Lec2A High-Order Procedures
+
+### Sigma Notation
+
+```scheme
+; 定义Σ求和，传入term和next作为参数
+(define (SUM TERM A NEXT B)
+  (IF (> A B)
+      0
+      (+ (TERM A)
+         (SUM TERM 
+              (NEXT A)
+              NEXT
+              B))))
+
+; sum of integers
+(define (SUM-INT A B)
+  (define (IDENTITY X) X)
+  (SUM IDENTITY A 1+ B))
+
+; sum of squares
+(define (SUM-SQ A B)
+  (SUM SQUARE A 1+ B))
+```
+
+### The Rights and Privileges of First-Class Citizens in PL
+
+- To be named by variables
+- To be passed as arguments to procedures
+- To be returned as values of procedures
+- To be incorporated into data structures
+
+
+
+
 
