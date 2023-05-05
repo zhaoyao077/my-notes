@@ -222,5 +222,33 @@
 
 
 
+## Lec2B Compound Data
 
+### Define a rational number
+
+![image-20230506014559056](sicp-spring-2005.assets/image-20230506014559056.png)
+
+### Rational Number Operations
+
+```scheme
+(define (MAKE-RAT N D)
+  (list N D))
+
+(define (NUMER R)
+  (car R))
+
+(define (DENOM R)
+  (cdr R))
+
+(define (+RAT X Y)
+  (MAKE-RAT
+   (+ (* (NUMER X) (DENOM Y)) 
+      (* (DENOM X) (NUMER Y)))
+   (* (DENOM X) (DENOM Y))))
+
+(define (*RAT X Y)
+  (MAKE-RAT
+   (* (NUMER X) (NUMER Y))
+   (* (DENOM X) (DENOM Y))))
+```
 
