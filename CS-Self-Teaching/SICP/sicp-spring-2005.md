@@ -232,7 +232,7 @@
 
 ```scheme
 (define (MAKE-RAT N D)
-  (list N D))
+  (cons N D))
 
 (define (NUMER R)
   (car R))
@@ -250,5 +250,37 @@
   (MAKE-RAT
    (* (NUMER X) (NUMER Y))
    (* (DENOM X) (DENOM Y))))
+```
+
+### Constructors and Selectors (CONS, CAR, CDR)
+
+```scheme
+; For any x and y
+(car (cons x y)) is x
+
+(cdr (cons x y)) is y
+```
+
+### Representing vectors in the plane
+
+```scheme
+(define (make-vector x y) (cons x y))
+
+(define (xcor p) (car p))
+
+(define (ycor p) (cdr p))
+```
+
+### Implementation of cons, car, cdr
+
+```scheme
+(define (cons a b)
+  (lambda (pick)
+    (cond ((= pick 1) a)
+          ((= pick 2) b))))
+
+(define (car x) (x 1))
+
+(define (cdr x) (x 2))
 ```
 
