@@ -271,16 +271,52 @@
 (define (ycor p) (cdr p))
 ```
 
-### Implementation of cons, car, cdr
+### Implementation of CONS, CAR, CDR
 
 ```scheme
-(define (cons a b)
+(define (CONS a b)
   (lambda (pick)
     (cond ((= pick 1) a)
           ((= pick 2) b))))
 
-(define (car x) (x 1))
+(define (CAR x) (x 1))
 
-(define (cdr x) (x 2))
+(define (CDR x) (x 2))
+```
+
+
+
+## Lec3A Henderson Escher Example
+
+### LIST
+
+<img src="sicp-spring-2005.assets/image-20230507173512021.png" alt="image-20230507173512021" style="zoom:50%;" />
+
+```scheme
+; define 1-TO-4
+(define 1-TO-4 (list 1 2 3 4))
+
+(car (cdr 1-TO-4)) -> 2
+
+(cdr (cdr 1-TO-4)) -> (3 4)
+
+; define nil
+(define nil ())
+
+; define scale a list (null? 是内置函数)
+(define (SCALE-LIST s l)
+  (if (null? l)
+      nil
+      (cons (* (car l) s)
+            (SCALE-LIST s (cdr l)))))
+
+; map every element from x to p(x)
+(define (MAP p l)
+  (if (null? l)
+      nil
+      (cons (p (car l))
+            (MAP p (cdr l)))))
+
+(MAP SQUARE 1-TO-4) -> (1 4 9 16)
 ```
 
