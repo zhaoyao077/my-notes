@@ -320,3 +320,57 @@
 (MAP SQUARE 1-TO-4) -> (1 4 9 16)
 ```
 
+
+
+## Lec3B Symbolic Differentiation; Quotation
+
+### Derivative of An Expression
+
+```scheme
+; define derivative of expressions in sum or product format
+(define (DERIV EXP VAR)
+  (COND ((CONSTANT? EXP VAR) 0)
+        ((SAME-VAR? EXP VAR) 1)
+        ((SUM? EXP)
+         (MAKE-SUM (DERIV (A1 EXP) VAR)
+                   (DERIV (A2 EXP) VAR)))
+        ((PRODUCT? EXP)
+         (MAKE-SUM
+          (MAKE-PRODUCT (M1 EXP)
+                        (DERIV (M2 EXP) VAR))
+          (MAKE-PRODUCT (DERIV (M1 EXP) VAR)
+                        (M2 EXP)))))))
+
+(define (CONSTANT? EXP VAR)
+  (AND (ATOM? EXP)
+       (NOT (EQ? EXP VAR))))
+
+(define (SAME-VAR? EXP VAR)
+  (AND (ATOM? EXP)
+       (EQ? EXP VAR)))
+
+(define (SUM? EXP)
+  (AND (NOT (ATOM? EXP))
+       (EQ (CAR EXP) '+))) ; notice the special quotation '+
+
+(define (MAKE-SUM a1 a2)
+  (LIST '+ a1 a2))
+
+(define A1 CADR) ; CADR means car & cdr
+(define A2 CADDR) ; CADRR means car & cdr & cdr
+
+(define (PRODUCT? EXP)
+  (AND (NOT (ATOM? EXP))
+       (EQ? (CAR EXP) '*)))
+
+(define (MAKE-PRODUCT m1 m2)
+  (LIST '* m1 m2))
+
+(define M1 CADR) ; CADR means car & cdr
+(define M2 CADDR) ; CADRR means car & cdr & cdr
+```
+
+### Quotation
+
+<img src="sicp-spring-2005.assets/image-20230508163642673.png" alt="image-20230508163642673" style="zoom:60%;" />
+
